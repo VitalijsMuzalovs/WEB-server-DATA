@@ -1,0 +1,10 @@
+2022-10-27T14:20:56.449769Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-10-27T14:20:56.449960Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2022-10-27T14:20:56.449987Z 0 [System] [MY-013169] [Server] C:\WEB\bin\mysql-8.0\bin\mysqld.exe (mysqld 8.0.31) initializing of server in progress as process 1204
+2022-10-27T14:20:56.468590Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-10-27T14:20:56.742719Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-10-27T14:20:57.407879Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2022-10-27T14:21:21.045156Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-10-27T14:21:21.045339Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2022-10-27T14:21:21.045369Z 0 [System] [MY-010116] [Server] C:\WEB\bin\mysql-8.0\bin\mysqld.exe (mysqld 8.0.31) starting as process 9952
+2022-10-27T14:21:21.057779Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
