@@ -8,3 +8,8 @@
 2022-10-27T14:21:21.045339Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
 2022-10-27T14:21:21.045369Z 0 [System] [MY-010116] [Server] C:\WEB\bin\mysql-8.0\bin\mysqld.exe (mysqld 8.0.31) starting as process 9952
 2022-10-27T14:21:21.057779Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-10-27T14:21:21.240341Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-10-27T14:21:21.525168Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-10-27T14:21:21.525719Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-10-27T14:21:21.563213Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-10-27T14:21:21.563297Z 0 [System] [MY-010931] [Server] C:\WEB\bin\mysql-8.0\bin\mysqld.exe: ready for connections. Version: '8.0.31'  socket: ''  port: 3306  MySQL Community Server - GPL.
