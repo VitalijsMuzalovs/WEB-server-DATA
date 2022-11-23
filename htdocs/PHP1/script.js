@@ -11,11 +11,21 @@ function showArticle(event){
     }
 }
 
-// function showArticle1(){
-//     let klikskis = document.getElementById('article1');
-//     if(klikskis.style.display === 'block'){
-//         klikskis.style.display = 'none'
-//     }else{
-//         klikskis.style.display= 'block'
-//     }
-// }
+function showArticle1(){
+    let klikskis = document.getElementById('article1');
+    if(klikskis.style.display === 'block'){
+        klikskis.style.display = 'none'
+    }else{
+        klikskis.style.display= 'block'
+    }
+}
+
+function showArticle2(){
+    let klikskis = document.getElementById('article2');
+    if(klikskis.style.display === 'block'){
+        klikskis.style.display = 'none'
+    }else{
+        klikskis.style.display= 'block'
+    }
+}
+

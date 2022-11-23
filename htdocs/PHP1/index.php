@@ -13,8 +13,8 @@
     <div class="container">
         <div class="flex-item">
             <ul>
-                <a onclick="showArticle(event)"><img id="uzdevums1" src="images/one.png"></a>
-                <a onclick="showArticle(event)"><img id="uzdevums2" src="images/two.png"></a>
+                <a onclick="showArticle1()"><img id="uzdevums1" src="images/one.png"></a>
+                <a onclick="showArticle2()"><img id="uzdevums2" src="images/two.png"></a>
                 <a onclick="showArticle(event)"><img id="uzdevums3" src="images/three.png"></a>
                 <a onclick="showArticle(event)"><img id="uzdevums4" src="images/four.png"></a>
                 <a onclick="showArticle(event)"><img id="uzdevums5" src="images/five.png"></a>
@@ -25,7 +25,7 @@
                     echo "<h1>Title 1 PHP</h1><hr>";
                     echo "Teksta izvade ar ECHO.<br>";
                     print "Teksta izvade ar PRINT.<br>";
-                    $zinojums = "Teksts, kurš ievietots mainīgahā ZIŅOJUMS";
+                    $zinojums = "Teksts, kurš ievietots mainīgajā ZIŅOJUMS";
                 ?>
 
                 <p><?php echo $zinojums; ?></p>
@@ -36,10 +36,136 @@
                     $thisYear = 2022;
                     $age = $thisYear - $birthYear;
 
-                    echo "{$userName}, you are {$age} years old!";
+                    echo "$userName, you are $age years old! <br>";
+                    echo 'User name: $userName <br>';
+                    echo "User name: $userName <br>";
+
+                    echo "Lietotājvārds: $userName (dzimšanas gads: $birthYear)<br>";
+                    echo 'Lietotājvārds:'.$userName.'(dzimšanas gads: '.$birthYear.')<br>';
+
+                    define("Pi",3.14159);
+                    echo 'Defined constant: '.Pi.'<br>';
+                    echo 'Rounded Pi: '.round(Pi,2).'<br>';
+
+                    $uzraksts = "Es tagad mācos PHP";
+                    echo var_dump($uzraksts);
+
+                    $skaitlis = 68.456;
+                    echo var_dump($skaitlis);
+
+                    echo '<br> Random skaitlis: '.rand(10,100).'<br>';
+
+                    echo 'Simbolu skaits:'.mb_strlen($uzraksts).'<br>';
+                    echo 'Vārdu skaits: '.str_word_count($uzraksts).'<br>';
+                ?>
+                <hr>
+                <form action="" method="post">
+                    <input class="ievade" type="text" name="Ievade">
+                    <input class="btn" type="submit" name="Iesniegt" value="Send">
+                </form>
+
+                <?php 
+                    $teksts = '';
+                    if(isset($_POST['Iesniegt'])){
+                        $teksts = $_POST['Ievade'];
+                        echo '<script>showArticle1()</script>';
+
+                        if(is_numeric($teksts)){
+                            echo $teksts.' ir skaitlis<br>';
+                        }else if($teksts == ''){
+                            echo 'Ievades lauks ir tukšs!<br>';
+                        }else{
+                            echo $teksts.' ir teksts!<br>';
+                        }
+                    }
+                ?>
+
+                <hr>
+
+                <form action="" method="post">
+                    <input class="ievade" type="number" name="laikaIevade">
+                    <input class="btn" type="submit" name="laikaIesniegsana" value="Convert">
+                </form>
+
+                
+                    
+                <?php
+                $sekundes = 0;
+                $minutes = 0;
+                $stundas = 0;
+
+                $teksts = '';
+                if(isset($_POST['laikaIesniegsana'])){
+                    $sekundes = $_POST['laikaIevade'];
+                    echo '<script>showArticle1()</script>';
+
+                    if(is_numeric($sekundes)){
+                        $stundas =  $sekundes /3600;
+                        $minutes = (int) ($sekundes /60) %60;
+                        $sekundes = $sekundes %60;
+                    }
+                    echo round($stundas).'h:'.round($minutes).'m:'.round($sekundes).'s';
+                }
+    
+                ?>
+
+            </article>
+            
+            <article id="article2">
+                <h1>PHP masīvi</h1>
+                <?php
+                    $komponents = array("processors","mātes plate","videokarte","RAM","barošanas bloks");
+                    echo "<b>Datora sastāvdaļas</b> ir: $komponents[0],$komponents[1],$komponents[2],$komponents[4] u.c. <br>";
+                    
+                    print_r ($komponents);
+
+                    echo "<br><br>";
+
+                    $koki = array(
+                        array("Priede","skujkoks"),
+                        array("Ozols","lapu koks"),
+                        array("Egle","skujkoks"),
+                    );
+                    
+                    //var_dump($koki);
+
+                    echo "* ".$koki[0][0]." ir koks, kas skaitās ".$koki[0][1]."<br>";
+                    echo "* ".$koki[1][0]." ir koks, kas skaitās ".$koki[1][1]."<br>";
+                    echo "* ".$koki[2][0]." ir koks, kas skaitās ".$koki[2][1]."<br><hr>";
+
+                    foreach($koki as $koks){
+                        echo "* ".$koks[0]." ir koks, kas skaitās ".$koks[1]."<br>";
+                    }
+
+                    echo "<hr>";
+
+                    $audzekni = array(
+                        array('vards'=>'Jānis','uzvards'=>'Bērziņš','telefons'=>28888888),
+                        array('vards'=>'Juris','uzvards'=>'Strautmanis','telefons'=>27777777),
+                        array('vards'=>'Anna','uzvards'=>'Panna','telefons'=>26666666),
+                        array('vards'=>'Zane','uzvards'=>'Bērziņa','telefons'=>25555555),
+                    );
+
+                    echo "
+                    <table>
+                        <tr>
+                            <th>Vārds</th>
+                            <th>Uzvārds</th>
+                            <th>Tālrunis</th>
+                        </tr>
+                        ";
+                        foreach($audzekni as $audzeknis){
+                            echo "
+                            <tr>
+                                <td>".$audzeknis['vards']."</td>
+                                <td>".$audzeknis['uzvards']."</td>
+                                <td>".$audzeknis['telefons']."</td>
+                            </tr>
+                        ";
+                        }
+
                 ?>
             </article>
-            <article id="article2"><h1>Title 2</h1></article>
             <article id="article3"><h1>Title 3</h1></article>
             <article id="article4"><h1>Title 4</h1></article>
             <article id="article5"><h1>Title 5</h1></article>
