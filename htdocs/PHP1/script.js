@@ -1,31 +1,12 @@
-function showArticle(event){
-    let myID = event.target.id
-    let str = 'uzdevums'
-    let num = myID.substr(str.length)
-
-    let klikskis = document.getElementById(`article${num}`);
+function showArticle(uzd){  
+    console.log(uzd) 
+    let klikskis = document.getElementById(uzd);
+    
     if(klikskis.style.display === 'block'){
         klikskis.style.display = 'none'
+        console.log(klikskis.style.display)
     }else{
         klikskis.style.display= 'block'
+        console.log(klikskis.style.display)
     }
 }
-
-function showArticle1(){
-    let klikskis = document.getElementById('article1');
-    if(klikskis.style.display === 'block'){
-        klikskis.style.display = 'none'
-    }else{
-        klikskis.style.display= 'block'
-    }
-}
-
-function showArticle2(){
-    let klikskis = document.getElementById('article2');
-    if(klikskis.style.display === 'block'){
-        klikskis.style.display = 'none'
-    }else{
-        klikskis.style.display= 'block'
-    }
-}
-

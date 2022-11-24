@@ -4,174 +4,137 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <title>Ievāds PHP</title>
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <title>Muzalovs</title>
 </head>
 <body>
-    <div class="container">
-        <div class="flex-item">
-            <ul>
-                <a onclick="showArticle1()"><img id="uzdevums1" src="images/one.png"></a>
-                <a onclick="showArticle2()"><img id="uzdevums2" src="images/two.png"></a>
-                <a onclick="showArticle(event)"><img id="uzdevums3" src="images/three.png"></a>
-                <a onclick="showArticle(event)"><img id="uzdevums4" src="images/four.png"></a>
-                <a onclick="showArticle(event)"><img id="uzdevums5" src="images/five.png"></a>
-            </ul>
 
-            <article id="article1">
-                <?php
-                    echo "<h1>Title 1 PHP</h1><hr>";
-                    echo "Teksta izvade ar ECHO.<br>";
-                    print "Teksta izvade ar PRINT.<br>";
-                    $zinojums = "Teksts, kurš ievietots mainīgajā ZIŅOJUMS";
-                ?>
+<?php
+echo "<h1>1.uzd</h1>";
+$a = array(7,8,9,10,11,12);
+echo $a[4];
+echo "<hr>";
 
-                <p><?php echo $zinojums; ?></p>
-                
-                <?php 
-                    $userName = "Vital";
-                    $birthYear = 1984;
-                    $thisYear = 2022;
-                    $age = $thisYear - $birthYear;
+echo "<h1>2.uzd</h1>";
+$b = array("viens" => 1, "divi" => 2, "trīs" => 3, "četri" => 4);
+echo $b['trīs'];
+echo "<hr>";
 
-                    echo "$userName, you are $age years old! <br>";
-                    echo 'User name: $userName <br>';
-                    echo "User name: $userName <br>";
+echo "<h1>3.uzd</h1>";
+$skaitli = [2,3,4];
+array_push($skaitli,5);
+echo "Skaitļa 5 indekss:".array_search(5,$skaitli);
+echo "<hr>";
 
-                    echo "Lietotājvārds: $userName (dzimšanas gads: $birthYear)<br>";
-                    echo 'Lietotājvārds:'.$userName.'(dzimšanas gads: '.$birthYear.')<br>';
+echo "<h1>4.uzd</h1>";
+$divdimensiju[1][] = "viens";
+$divdimensiju[1][] = "divi";
+$divdimensiju[1][] = "trīs";
+$divdimensiju[2][] = "četri";
+$divdimensiju[2][] = "pieci";
+$divdimensiju[2][] = "seši";
 
-                    define("Pi",3.14159);
-                    echo 'Defined constant: '.Pi.'<br>';
-                    echo 'Rounded Pi: '.round(Pi,2).'<br>';
+echo "3: ".$divdimensiju[1][2];
+echo "<br>";
+echo "5: ".$divdimensiju[2][1];
+echo "<hr>";
 
-                    $uzraksts = "Es tagad mācos PHP";
-                    echo var_dump($uzraksts);
+echo "<h1>5.uzd</h1>";
+$augusts =[22.5,23.6,27.1,27.3,27.5,27.9,28.0,28.6,28.8];
+rsort($augusts);
+foreach($augusts as $num){
+    echo $num."<br>";
+}
+echo "<hr>";
 
-                    $skaitlis = 68.456;
-                    echo var_dump($skaitlis);
+echo "<h1>6.uzd</h1>";
+$draugi = array('Viktors'=>17,'Aldis'=>19,'Ansis'=>26,'Miks'=>23,);
+arsort($draugi);
 
-                    echo '<br> Random skaitlis: '.rand(10,100).'<br>';
+foreach ($draugi as $key => $value){
+    echo $key." ir ".$value." gadus vecs. <br>";
+}
+echo "<hr>";
 
-                    echo 'Simbolu skaits:'.mb_strlen($uzraksts).'<br>';
-                    echo 'Vārdu skaits: '.str_word_count($uzraksts).'<br>';
-                ?>
-                <hr>
-                <form action="" method="post">
-                    <input class="ievade" type="text" name="Ievade">
-                    <input class="btn" type="submit" name="Iesniegt" value="Send">
-                </form>
+echo "<h1>7.uzd</h1>";
 
-                <?php 
-                    $teksts = '';
-                    if(isset($_POST['Iesniegt'])){
-                        $teksts = $_POST['Ievade'];
-                        echo '<script>showArticle1()</script>';
+$profesijas = array(
+array('profesija'=>'Programmēšanas tehniķis','text'=>'Programmēšanas tehniķis piedalās programmatūras projektēšanā, ieviešanā un uzturēšanā, kā arī jau esošas programmatūras pielagošanā konkrētā pasūtītāja vajadzībām. Programmēšanas tehniķis apkalpo datorsistēmas un programmatūru, instalē un konfigurē esošo un vēlamo programmatūru.','pamatalga'=> '1000 EUR','vakances'=> 3, 'slodze'=> 'Pilna (8h)'),
 
-                        if(is_numeric($teksts)){
-                            echo $teksts.' ir skaitlis<br>';
-                        }else if($teksts == ''){
-                            echo 'Ievades lauks ir tukšs!<br>';
-                        }else{
-                            echo $teksts.' ir teksts!<br>';
-                        }
-                    }
-                ?>
+array('profesija'=>'Datorsistēmu tehniķis','text'=>'Brīvi pārvalda biroja lietojumprogrammas dokumentu, aprēķinu tabulu, prezentāciju sagatavošanai un datorlietotāja darba procesu automatizēšanaim sagatavo un uztur vienkāršas datubāzes un interneta mājas lapas.','pamatalga'=> '850 EUR','vakances'=> 3, 'slodze'=> 'Pilna (8h)'),
 
-                <hr>
+array('profesija'=>'Elektrotehniķis','text'=>'Veic ārējo un iekšējo elektrisko tīklu izbūvi un elektroietaišu ierīkošanas, ekspluatācijas un remonta darbus - labo dažādas elektrīskās iekārtas - sadzīvs tehniku, apgaismes objektus, elektriskos sadalītājus, elektromotrus, ģeneratorus, slodzes un jaudas slēdžus u.c. iekārtas.','pamatalga'=> '800 EUR','vakances'=> 1, 'slodze'=> 'Pilna (8h)'),
 
-                <form action="" method="post">
-                    <input class="ievade" type="number" name="laikaIevade">
-                    <input class="btn" type="submit" name="laikaIesniegsana" value="Convert">
-                </form>
+array('profesija'=>'Mehatronisku sistēmu tehniķis','text'=>'Mehatronisku sistēmu tehniķis veic elektropiedziņas un iekārtu vadības elektrisko shēmu montāžu un regulēšanu.Mehatronisku sistēmu tehniķis veic individuālu darbu saistībā ar automatizētu un datorizētu vadāmu tehnoloģisku procesu tehnisko apkalpošanu, ierīču montāžu un regulēšan, veic defektu atklāšanu un novertēšanu.','pamatalga'=> '500 EUR','vakances'=> 2, 'slodze'=> 'Nepilna (4h)'));
+?>
 
-                
-                    
-                <?php
-                $sekundes = 0;
-                $minutes = 0;
-                $stundas = 0;
+<style>
+.flex-item{
+    display:flex;
+    width: 80%;
+    background-color: #eee;
+    font-family: Calibri;
+    font-size: 18px;
+    margin: 0 auto;
+}
 
-                $teksts = '';
-                if(isset($_POST['laikaIesniegsana'])){
-                    $sekundes = $_POST['laikaIevade'];
-                    echo '<script>showArticle1()</script>';
+.article{
+    display: grid;
+    grid-auto-flow: row;
+    grid-template: 15% auto 10% 10% / auto;
+    border: 1px solid #000;
+    font-size: 18px;
+}
 
-                    if(is_numeric($sekundes)){
-                        $stundas =  $sekundes /3600;
-                        $minutes = (int) ($sekundes /60) %60;
-                        $sekundes = $sekundes %60;
-                    }
-                    echo round($stundas).'h:'.round($minutes).'m:'.round($sekundes).'s';
-                }
-    
-                ?>
+h2{
+    font-size: 21px;
+    text-align: center;
+}
 
-            </article>
-            
-            <article id="article2">
-                <h1>PHP masīvi</h1>
-                <?php
-                    $komponents = array("processors","mātes plate","videokarte","RAM","barošanas bloks");
-                    echo "<b>Datora sastāvdaļas</b> ir: $komponents[0],$komponents[1],$komponents[2],$komponents[4] u.c. <br>";
-                    
-                    print_r ($komponents);
+.description{
+    margin: 10px;
+    text-align:justify;
+}
 
-                    echo "<br><br>";
+.details{
+    text-align: center;
+    font-size: 16px;
+}
 
-                    $koki = array(
-                        array("Priede","skujkoks"),
-                        array("Ozols","lapu koks"),
-                        array("Egle","skujkoks"),
-                    );
-                    
-                    //var_dump($koki);
+.btn{
+    width: fit-content;
+    justify-self: center;
+    padding: 2% 20%;
+    background: #333;
+    height: 30px;
+    text-align: center;
+    color:#fff;
 
-                    echo "* ".$koki[0][0]." ir koks, kas skaitās ".$koki[0][1]."<br>";
-                    echo "* ".$koki[1][0]." ir koks, kas skaitās ".$koki[1][1]."<br>";
-                    echo "* ".$koki[2][0]." ir koks, kas skaitās ".$koki[2][1]."<br><hr>";
+}
 
-                    foreach($koki as $koks){
-                        echo "* ".$koks[0]." ir koks, kas skaitās ".$koks[1]."<br>";
-                    }
+</style>
 
-                    echo "<hr>";
+<div class="container">
+    <div class="flex-item">
+        <?php
+        foreach($profesijas as $item){
+            echo    
+            "<div class='article'>
+                <h2>".$item['profesija']."</h2>
 
-                    $audzekni = array(
-                        array('vards'=>'Jānis','uzvards'=>'Bērziņš','telefons'=>28888888),
-                        array('vards'=>'Juris','uzvards'=>'Strautmanis','telefons'=>27777777),
-                        array('vards'=>'Anna','uzvards'=>'Panna','telefons'=>26666666),
-                        array('vards'=>'Zane','uzvards'=>'Bērziņa','telefons'=>25555555),
-                    );
+                <p class='description'>".$item['text']."</p>
 
-                    echo "
-                    <table>
-                        <tr>
-                            <th>Vārds</th>
-                            <th>Uzvārds</th>
-                            <th>Tālrunis</th>
-                        </tr>
-                        ";
-                        foreach($audzekni as $audzeknis){
-                            echo "
-                            <tr>
-                                <td>".$audzeknis['vards']."</td>
-                                <td>".$audzeknis['uzvards']."</td>
-                                <td>".$audzeknis['telefons']."</td>
-                            </tr>
-                        ";
-                        }
+                <p class='details'>
+                    Pamatalga: ".$item['pamatalga']." | 
+                    Vakances: ".$item['vakances']." | 
+                    Slodze: ".$item['slodze']." 
+                </p>
 
-                ?>
-            </article>
-            <article id="article3"><h1>Title 3</h1></article>
-            <article id="article4"><h1>Title 4</h1></article>
-            <article id="article5"><h1>Title 5</h1></article>
-        </div>
+                <a class='btn'>PIETEIKTIES</a>
+            </div>";
+        }
+        ?>
     </div>
+</div>
 
-    <footer>Izstrādāja Vitālijs Muzaļovs &copy; 2022</footer>
 </body>
 </html>
