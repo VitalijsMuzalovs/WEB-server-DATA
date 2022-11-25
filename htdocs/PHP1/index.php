@@ -68,8 +68,10 @@ array('profesija'=>'Mehatronisku sistēmu tehniķis','text'=>'Mehatronisku sist�
 ?>
 
 <style>
-.flex-item{
-    display:flex;
+.grid-item{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr;
     width: 80%;
     background-color: #eee;
     font-family: Calibri;
@@ -80,8 +82,10 @@ array('profesija'=>'Mehatronisku sistēmu tehniķis','text'=>'Mehatronisku sist�
 .article{
     display: grid;
     grid-auto-flow: row;
-    grid-template: 15% auto 10% 10% / auto;
-    border: 1px solid #000;
+    grid-template: 20% 1fr auto auto / 1fr;
+    align-content: flex-start;
+    margin: 10px;
+    background-color: #ddd;
     font-size: 18px;
 }
 
@@ -101,35 +105,36 @@ h2{
 }
 
 .btn{
-    width: fit-content;
-    justify-self: center;
-    padding: 2% 20%;
+    justify-self:stretch; 
+    cursor: pointer;
+    margin:10px;
+    padding: 1% 0;
     background: #333;
-    height: 30px;
     text-align: center;
+    border-radius: 5px;
     color:#fff;
-
 }
+
 
 </style>
 
 <div class="container">
-    <div class="flex-item">
+    <div class="grid-item">
         <?php
         foreach($profesijas as $item){
             echo    
             "<div class='article'>
-                <h2>".$item['profesija']."</h2>
+                <div><h2>".$item['profesija']."</h2></div>
 
-                <p class='description'>".$item['text']."</p>
+                <div class='description'>".$item['text']."</div>
 
-                <p class='details'>
+                <div class='details'>
                     Pamatalga: ".$item['pamatalga']." | 
                     Vakances: ".$item['vakances']." | 
                     Slodze: ".$item['slodze']." 
-                </p>
+                </div>
 
-                <a class='btn'>PIETEIKTIES</a>
+                <div class='btn'>PIETEIKTIES</div>
             </div>";
         }
         ?>
