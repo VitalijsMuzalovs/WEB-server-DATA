@@ -251,7 +251,73 @@
                     audzekni("Liene","Ozola","Pavārs");
                     audzekni("Jānis","Bērziņš","Konditors");
                     audzekni("Andris","Lapa","Programetājs");
-                ?>
+
+                    echo "<br><p>Funkcija, kas atgriež vērtību:</p>";
+                    
+                    function summa(int $x, int $y){
+                        $iznakums = $x+$y;
+                        return $iznakums;
+                    }
+
+                    function starpiba(int $x, int $y){
+                        $iznakums = $x-$y;
+                        return $iznakums;
+                    }
+
+                    function reizinajums(int $x, int $y){
+                        $iznakums = $x*$y;
+                        return $iznakums;
+                    }
+
+                    function dalijums(int $x, int $y){
+                        $iznakums = $x/$y;
+                        return $iznakums;
+                    }
+
+                    echo "5+10=".summa(5,10);
+                    echo "5+10=".starpiba(5,10);
+                    echo "5+10=".reizinajums(5,10);
+                    echo "5+10=".dalijums(5,10);
+
+                    $menesi=array(
+                        "janvaris"=>31,
+                        "februāris"=>"28, bet ja garais gads: 29",
+                        "marts"=>31,
+                        "aprilis"=>30,
+                        "mājs"=>31,
+                        "jūnijs"=>30,
+                        "jūlijs"=>31,
+                        "augusts"=>31,
+                        "septembris"=>30,
+                        "oktobris"=>31,
+                        "novembris"=>30,
+                        "decembris"=>31,
+                    );
+
+                    function izvele($menesa_nosaukums){
+                        echo "<option value='$menesa_nosaukums'>$menesa_nosaukums</option>";
+                    }
+                    ?>
+
+                    <p><b>Dienu skaits menesī: </b></p>
+                    <form action="" method="post">
+                        <select name="menesis" class="ievade">
+                            <?php
+                            foreach($menesi as $k=>$v){
+                                izvele($k);
+                            }
+                            ?>
+                        </select>
+                        <input type="submit" class="btn" name = "iesniegtMenesi" value="Pārbaudit">
+                    </form>
+
+                    <?php
+                        if(isset($_POST['iesniegtMenesi'])){
+                            $menesis = $_POST['menesis'];
+                            echo "<br>Dienu skaits šajā mēnesī <b>$menesis</b> ir $menesi[$menesis]";
+                            echo "<script>showArticle('article3')</script>";
+                        }
+                    ?>
             </article>
 
 
