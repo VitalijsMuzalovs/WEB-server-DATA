@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <script src="script.js"></script>
     <title>Ievāds PHP</title>
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
@@ -274,10 +275,10 @@
                         return $iznakums;
                     }
 
-                    echo "5+10=".summa(5,10);
-                    echo "5+10=".starpiba(5,10);
-                    echo "5+10=".reizinajums(5,10);
-                    echo "5+10=".dalijums(5,10);
+                    echo "5+10=".summa(5,10)."<br>";
+                    echo "5-10=".starpiba(5,10)."<br>";
+                    echo "5*10=".reizinajums(5,10)."<br>";
+                    echo "5/10=".dalijums(5,10)."<br>";
 
                     $menesi=array(
                         "janvaris"=>31,
@@ -320,8 +321,24 @@
                     ?>
             </article>
 
+            <article id="article4">
+                <h1>MySQL datu bāzes piesaiste</h1>
+                <hr>
 
-            <article id="article4"><h1>Title 4</h1></article>
+                <?php
+                    require("select.php");
+                ?>
+
+                <br>
+                <form action="insert.php" method="POST">
+                    <input type="text" name="precesIevade" class="ievade" placeholder="Preces nosaukums" required>
+                    <input type="number" name="cenasIevade" class="ievade" placeholder="Preces cena" required step="0.01">
+                    <input type="number" name="skaitaIevade" class="ievade" placeholder="Preces skaits" required min="1" max="9999" step="1">
+                    <input type="submit" name="pievienotPreci" value="PIEVIENOT" class="btn">
+                </form>
+
+            </article>
+
             <article id="article5"><h1>Title 5</h1></article>
         </div>
     </div>
