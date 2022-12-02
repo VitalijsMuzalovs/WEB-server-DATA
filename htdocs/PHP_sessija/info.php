@@ -15,7 +15,10 @@
                 <?php 
                     session_start();
                     if(isset($_SESSION['lietotajvards'])){
-                        echo "Hi!".$_SESSION["lietotajvards"]."! Autorizācija VEIKSMĪGA!";
+                        // $lietotaja_atrasana_SQL = "SELECT * FROM lietotaji WHERE lietoajs = '$lietotajvards' AND active=1";
+                        // $atrasanas_rezultats = mysqli_query($con,$lietotaja_atrasana_SQL);
+
+                        echo "Sveiks, ".$_SESSION["lietotajvards"]."! <br>Autorizācija VEIKSMĪGA!";
                         echo "<a href='files/logout.php' class='logout'>Izlogoties</a>";
                     }else{
                         echo "Tev šeit nav pieējas!";
