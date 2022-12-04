@@ -35,7 +35,7 @@ body{
     background: #555;
     border-radius: 5px 5px 0 0;
     color: #fff;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -47,6 +47,15 @@ body{
     font-size: 20px;
     text-align: center;
     padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.success{
+    color: rgb(38, 197, 38);
+    font-weight: 400;
 }
 
 form{
@@ -118,4 +127,15 @@ input{
 
 .registracija{
     display:none;
+}
+
+td{
+    padding: 0 0 0 20px;
+    text-align: left;
+    color: #333;
+}
+
+.fa-sharp{
+    margin: 20px;
+    cursor: pointer;
 }

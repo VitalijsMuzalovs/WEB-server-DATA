@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <!DOCTYPE html>
 <html lang="lv">
 <head>
@@ -15,20 +16,67 @@
                 <?php 
                     session_start();
                     if(isset($_SESSION['lietotajvards'])){
-                        // $lietotaja_atrasana_SQL = "SELECT * FROM lietotaji WHERE lietoajs = '$lietotajvards' AND active=1";
-                        // $atrasanas_rezultats = mysqli_query($con,$lietotaja_atrasana_SQL);
-
                         echo "Sveiks, ".$_SESSION["lietotajvards"]."! <br>Autorizācija VEIKSMĪGA!";
                         echo "<a href='files/logout.php' class='logout'>Izlogoties</a>";
                     }else{
                         echo "Tev šeit nav pieējas!";
+                        echo $_SESSION['lietotajvards'];
                         header("Refresh:2; url=index.php");
                     }
                 ?>
                 
             </div>
-            <div class="info">Šeit tiek tikai autorizēti lietotāji</div>
+            <div class="info">
+                <?php
+                    if(isset($_SESSION['lietotajvards'])){
+                        require("files/connect.php");
+                        $user = $_SESSION["lietotajvards"];
+                        $selectUser_SQL = "SELECT * FROM lietotaji WHERE lietotajs = '$user' AND active=1";
+                        $rsUser = mysqli_query($con,$selectUser_SQL);
+                        $arrUser = mysqli_fetch_assoc($rsUser);
+                        
+                        echo "
+                            <div class='info'>
+                            <table>
+                                <tr>
+                                    <td>Vārds:</td>
+                                    <td>".$arrUser['vards']."</td>
+                                </tr>
+                                <tr>
+                                    <td>Uzvārds:</td>
+                                    <td>".$arrUser['uzvards']."</td>
+                                </tr>
+                                <tr>
+                                    <td>E-pasts:</td>
+                                    <td>".$arrUser['email']."</td>
+                                </tr>
+                            </table>
+                            </div>
+                        ";
+                ?>
+                        <form action='#' method='post'>
+                            <button name='deleteUser' type='submit' value=''>
+                                <i class='fa-sharp fa-solid fa-trash'></i>
+                            </button>
+                        </form>
+
+                    
+                <?php
+                        require("files/functions.php");
+                        if(isset($_POST['deleteUser'])){
+                            if(deleteUser($user)){
+                                echo "'".$user."' ir veiksmīgi izdzēsts!";
+                                session_destroy();
+                            }
+                        }
+                    }else{
+                        echo "Tev šeit nav pieējas!";
+                        header("Refresh:2; url=index.php");
+                    }
+                ?>
+            </div>
         </div>
     </div>
 </body>
 </html>
+<?php ob_end_flush();?>

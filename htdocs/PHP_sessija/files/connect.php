@@ -6,9 +6,7 @@
 
     $con = mysqli_connect($servera_vards,$lietotajvards,$parole,$db_nosaukums);
 
-    // if($con){
-    //     echo "Savienojums ar DB veiksmīgi izveidots!";
-    // }else{
-    //     die("Pieslēgties neizdevās:".mysqli_connect_error());
-    // }
+    if(!$con){
+        die("Pieslēgties neizdevās:".mysqli_connect_error());
+    }
 ?>
