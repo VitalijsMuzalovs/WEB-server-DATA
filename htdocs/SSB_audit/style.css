@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+*{
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: #ddd;
+}
+
+.container{
+    max-width: 600px;
+    margin: 130px auto;
+}
+
+.login{
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.2);
+}
+
+.registracija{
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.2);
+}
+
+.title{
+    height: 90px;
+    background: #555;
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info{
+    color: #ff0000;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.success{
+    color: rgb(38, 197, 38);
+    font-weight: 400;
+}
+
+form{
+    padding: 30px 25px;
+}
+
+.row{
+    height: 35px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+input{
+    height: 100%;
+    width: 100%;
+    padding-left: 60px;
+    border-radius: 5px;
+    border:1px solid #999;
+    font-size: 16px;
+    transition: all 0.5s ease;
+}
+
+.row i{
+    position: absolute;
+    width: 47px;
+    height: 100%;
+    color: #fff;
+    font-size: 18px;
+    background: #555;
+    border: 1px solid #555;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button input{
+    color: #fff;
+    background: #555;
+    cursor: pointer;
+    font-size: 20px;
+    border: 1px solid #333;
+    padding-left: 0;
+}
+
+.button input:hover{
+    background: #333;
+}
+
+.register{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+.register a{
+    color: #333;
+    font-weight: bold;
+}
+
+.logout{
+    background: #aaa;
+    color:#333;
+    font-size: 18px;
+    padding: 5px 15px;
+    text-align: center;
+    margin: 0 10px;
+}
+
+.registracija{
+    display:none;
+}
+
+td{
+    padding: 0 0 0 20px;
+    text-align: left;
+    color: #333;
+}
+
+.fa-sharp{
+    margin: 20px;
+    cursor: pointer;
+}
