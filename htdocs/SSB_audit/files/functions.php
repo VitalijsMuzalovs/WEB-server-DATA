@@ -1,16 +1,16 @@
 <?php
 
-function isUserExist($con,$username){    
-    $searchUserSQL = "SELECT * FROM lietotaji WHERE lietotajs = '$username'";
+function isUserExist($con,$login){    
+    $searchUserSQL = "SELECT login FROM users WHERE login = '$login'";
     $rsUser = mysqli_query($con,$searchUserSQL);
     return mysqli_num_rows($rsUser);
 }
 
-function addUserSQL($con,$lietotajvards,$vards,$uzvards,$email,$safePass){
+function addUserSQL($con,$login,$name,$surname,$email,$safePass){
     $insertUserSQL = "
-        INSERT INTO lietotaji
-        (lietotajs,vards,uzvards,email,parole,active)
-        VALUES('$lietotajvards','$vards','$uzvards','$email','$safePass',1)
+        INSERT INTO users
+        (login,name,surname,email,password,active)
+        VALUES('$login','$name','$surname','$email','$safePass',1)
     ";
 
     if(mysqli_query($con,$insertUserSQL)){
@@ -23,7 +23,7 @@ function addUserSQL($con,$lietotajvards,$vards,$uzvards,$email,$safePass){
 function deleteUser($user){
     require('connect.php');
     $deletetUserSQL = "
-        UPDATE lietotaji SET active = 0 WHERE lietotajs = '$user'
+        UPDATE users SET active = 0 WHERE login = '$user'
     ";
 
     if(mysqli_query($con,$deletetUserSQL)){

@@ -2,7 +2,7 @@
     $servera_vards = "localhost";
     $lietotajvards = "root";
     $parole = "";
-    $db_nosaukums ="sessija";
+    $db_nosaukums ="audits";
 
     $con = mysqli_connect($servera_vards,$lietotajvards,$parole,$db_nosaukums);
 

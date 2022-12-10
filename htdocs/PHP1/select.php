@@ -26,7 +26,7 @@
                                 <form action='delete.php' method='post'>
                                     <button name='dzestPreci' type='submit' value='{$ieraksts['ID']}'>
                                         <i class='fas fa-times'></i>
-                                        </button>
+                                    </button>
                                 </form>
                             </td>
                         </tr>

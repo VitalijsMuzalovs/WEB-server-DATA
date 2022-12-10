@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autorizācija portālā</title>
+    <title>Autorizācija</title>
     <link rel="stylesheet" href="style.css">
     <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <script src="script.js"></script>
@@ -20,23 +20,23 @@
                         require("files/connect.php");
                         session_start();
 
-                        $lietotajvards = mysqli_real_escape_string($con,$_POST['lietotajs']);
-                        $parole = mysqli_real_escape_string($con,$_POST['parole']);
+                        $login = mysqli_real_escape_string($con,$_POST['login']);
+                        $password = mysqli_real_escape_string($con,$_POST['password']);
 
-                        $lietotaja_atrasana_SQL = "SELECT * FROM lietotaji WHERE lietotajs = '$lietotajvards' AND active=1";
+                        $lietotaja_atrasana_SQL = "SELECT * FROM users WHERE login = '$login' AND active=1";
                         $atrasanas_rezultats = mysqli_query($con,$lietotaja_atrasana_SQL);
 
                         if(mysqli_num_rows($atrasanas_rezultats) == 1){
                             while($ieraksts = mysqli_fetch_assoc($atrasanas_rezultats)){
-                                if(password_verify($parole,$ieraksts['parole'])){
-                                    $_SESSION["lietotajvards"] = $lietotajvards;
-                                    header("location: info.php");
+                                if(password_verify($password,$ieraksts['password'])){
+                                    $_SESSION["login"] = $login;
+                                    header("location:admin/admin.php");
                                 }else{
-                                    echo "Nepareizs lietotājvārds vai parole!";
+                                    echo "<i class='info'>Nepareizs lietotājvārds vai parole!</i>";
                                 }
                             }
                         }else{
-                            echo "Nepareizs lietotājvārds vai parole";
+                            echo "<i class='info'>Nepareizs lietotājvārds vai parole!</i>";
                         }
                     }
                     if(isset($GET['logout'])){
@@ -45,17 +45,17 @@
                 ?>
             </div>
 
-            <form action="#" method="POST">
+            <form class="login_form" action="#" method="POST">
                 <div class="row">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="lietotajs" placeholder="Lietotājvārds" required>
+                    <input class="left_padding" type="text" name="login" placeholder="Login" required>
                 </div>
                 <div class="row">
                     <i class="fas fa-lock"></i>
-                    <input type="password" name="parole" placeholder="Parole" required>
+                    <input class="left_padding" type="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="row button">
-                    <input type="submit" name="autorizacija" value="Ielogoties">
+                    <input type="submit" name="autorizacija" value="LogIn">
                 </div>
                 <div class="register">
                     Neesi lietotājs? <a href="#" onclick="switchBlock('registracija')">Reģistrējies!</a>
