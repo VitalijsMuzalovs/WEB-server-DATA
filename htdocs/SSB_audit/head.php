@@ -6,7 +6,7 @@
         <div><h2>SSB audit system</h2></div>
         <div class="logout_icon">
             <form action='#' method='post'>
-                <button name='logout' type='submit' value=''>
+                <button class="exit_btn" name='logout' type='submit'>
                     <i class='fa-sharp fa-solid fa-arrow-right-from-bracket'></i>
                 </button>
             </form>

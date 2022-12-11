@@ -19,12 +19,21 @@ header{
 
 .head{
     display:grid;
-    
     grid-template-columns: 1fr 1fr 1fr;
 }
 
 .logout_icon{    
     justify-self:right;
+    align-self: center; 
+}
+
+.exit_btn{
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 
@@ -111,8 +120,9 @@ body{
 input{
     height: 100%;
     width: 100%;
+    margin: 0.1rem;
     padding-left: 10px;
-    border-radius: 5px;
+    border-radius: 0.3rem;
     border:1px solid #999;
     font-size: 16px;
     transition: all 0.5s ease;
@@ -129,7 +139,8 @@ input{
 }
 
 .admin_form{
-    width: 50%;
+    width: 100%;
+    margin: 5px;
 }
 
 .row i{
@@ -218,3 +229,9 @@ td{
     display:flex;
     justify-content: center;
 }
+
+.sections{
+    display:grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+}
+
