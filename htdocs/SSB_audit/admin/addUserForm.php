@@ -8,7 +8,8 @@
             <input type="email" name="email" placeholder="E-mail">
             <input type="password" name="password" placeholder="Password" required>
             <input type="password" name="password2" placeholder="Password confirmation" required>
-            <div class="button"><input class="btn" type="submit" name="addUserBtn" value="ADD"></div>
+            <div class="button"><input class="btn" onclick="add(this)" type="submit" name="addUserBtn" value="ADD"></div>
         </form>
+        <div id='info'></div>
     </div>
 </div>

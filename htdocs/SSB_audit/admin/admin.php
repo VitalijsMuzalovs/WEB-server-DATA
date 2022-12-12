@@ -33,6 +33,7 @@
 
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     if(isset($_POST['addUserBtn'])){
+                        $success_msg = False;
                         $login = mysqli_real_escape_string($con,$_POST['login']);
                         $name = mysqli_real_escape_string($con,$_POST['name']);
                         $surname = mysqli_real_escape_string($con,$_POST['surname']);
@@ -46,13 +47,13 @@
                         $readyToRegister = False;
 
                         if(isUserExist($con,$login)){
-                            echo "<i class='info'>User '$login' is allready exist!</i>";
+                            $msg = "User \'".$login."\' is allready exist!";
                         }else{
                             if(!$completedAllFields){
-                                echo "<i class='info'>Please, fill in all fields!</i>";
+                                $msg = "Please, fill in all fields!";
                             }else{
                                 if(!$passOK){
-                                    echo "<i class='info'>Passwords doesn't fits!</i>";
+                                    $msg = "Passwords doesn\'t fits!";
                                 }else{
                                     $readyToRegister = True;
                                 }
@@ -64,14 +65,26 @@
                             $insertUser = True;
                             
                             if($insertUser){
-                                echo "<i class='info success'>New user successfully registered!</i>";
-                                header("Refresh:0,url=admin.php");
+                                $msg = "New user successfully registered!";
+                                $success_msg = True;                               
                             }else{
                                 echo "Error!";
                             }
                         }
                     }
+                    echo "<script>document.getElementById('info').innerHTML +='".$msg."' </script>";
+                    if($success_msg){
+                        echo "<script>document.getElementById('info').classList.add('info','success')</script>";
+                    }else{
+                        echo "<script>document.getElementById('info').classList.add('info')</script>";
+                    };
+                    header("Refresh:3,url=admin.php"); 
                 }
+
+                
+                
+                
+
             }else{
                 echo "<div class='error'>ACCESS DENIED!</div>";
             }
@@ -81,5 +94,6 @@
     </section>
     
 </body>
+<?php require("../footer.php") ?>
 </html>
 <?php ob_end_flush();?>

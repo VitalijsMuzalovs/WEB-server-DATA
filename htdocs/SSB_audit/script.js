@@ -10,3 +10,4 @@ function switchBlock(block){
         register.style.display = 'none';
     }
 }
+;
