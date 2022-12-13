@@ -40,6 +40,7 @@
                         $email = mysqli_real_escape_string($con,$_POST['email']);
                         $password = mysqli_real_escape_string($con,$_POST['password']);
                         $password2 = mysqli_real_escape_string($con,$_POST['password2']);
+                        is_null($_POST['isUserActive'])? $isActive = 0 : $isActive = 1;
                     
                         $completedAllFields = !empty($login) && !empty($name) && !empty($surname) && !empty($password);
                         $passOK = $password === $password2;
@@ -61,8 +62,8 @@
                         }
 
                         if($readyToRegister){
-                            $insertUser = addUserSQL($con,$login,$name,$surname,$email,$safePass);
-                            $insertUser = True;
+                            $insertUser = addUserSQL($con,$login,$name,$surname,$email,$safePass,$isActive);
+                            // $insertUser = True;
                             
                             if($insertUser){
                                 $msg = "New user successfully registered!";
@@ -71,14 +72,15 @@
                                 echo "Error!";
                             }
                         }
+                    
+                        echo "<script>document.getElementById('info').innerHTML +='".$msg."' </script>";
+                        if($success_msg){
+                            echo "<script>document.getElementById('info').classList.add('info','success')</script>";
+                        }else{
+                            echo "<script>document.getElementById('info').classList.add('info')</script>";
+                        };
+                        header("Refresh:3,url=admin.php"); 
                     }
-                    echo "<script>document.getElementById('info').innerHTML +='".$msg."' </script>";
-                    if($success_msg){
-                        echo "<script>document.getElementById('info').classList.add('info','success')</script>";
-                    }else{
-                        echo "<script>document.getElementById('info').classList.add('info')</script>";
-                    };
-                    header("Refresh:3,url=admin.php"); 
                 }
 
                 
@@ -87,6 +89,10 @@
 
             }else{
                 echo "<div class='error'>ACCESS DENIED!</div>";
+            }
+
+            if(isset($_POST['edit'])){
+                echo "AAAAAAAAAAAAAAA";
             }
         ?>
 

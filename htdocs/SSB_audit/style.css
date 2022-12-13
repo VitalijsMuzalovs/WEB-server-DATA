@@ -141,6 +141,11 @@ input{
     margin: 5px;
 }
 
+.form_item_activeUser{
+    display: inline-block;
+    width: fit-content;
+}
+
 .row i{
     position: absolute;
     width: 47px;
@@ -218,7 +223,7 @@ td{
     cursor: pointer;
 }
 
-.admin_menu_item:hover{
+.admin_menu_item:hover,.edit_button:hover{
     box-shadow: 1px 1px 10px darkblue;
     border: darkblue 1px solid;
 }
@@ -241,4 +246,10 @@ td{
     font-size: 14px;
     background-color: darkblue;
     color: #fff;
+}
+
+.edit_button{
+    cursor: pointer;
+    text-align: center;
+    padding: 0 5px;
 }

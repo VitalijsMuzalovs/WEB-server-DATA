@@ -8,6 +8,7 @@
         <div class='users'>
             <table>
                 <tr>
+                    <th>ID</th>
                     <th>Login</th>
                     <th>Name</th>
                     <th>Surname</th>
@@ -18,15 +19,15 @@
             while($row = mysqli_fetch_assoc($rsUsers)){
                 echo "
                 <tr>
+                    <td><form action='#' method='post'><input class='edit_button' type='submit' name='edit' value=".$row['userID']."></form></td>
                     <td>".$row['login']."</td>
                     <td>".$row['name']."</td>
                     <td>".$row['surname']."</td>
-                    <td>".$row['email']."</td>
-                    <td>".$row['userID']."</td>";
+                    <td>".$row['email']."</td>";
                     if($row['active']){
-                        echo "<td><form method='post' action='activeUser.php'><input type='checkbox' name=".$row['userID']." checked></form</td>";
+                        echo "<td>Active</td>";
                     }else{
-                        echo "<td><form method='post' action='activeUser.php'><input type='checkbox' name=".$row['userID']."></form></td>";
+                        echo "<td>Disabled</td>";
                     }
                     
                 echo "</tr>";

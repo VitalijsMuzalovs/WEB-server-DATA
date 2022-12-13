@@ -1,6 +1,5 @@
 <header>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <div class="head">
         <div></div>
         <div><h2>SSB audit system</h2></div>
