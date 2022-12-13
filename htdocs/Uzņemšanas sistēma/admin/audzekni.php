@@ -3,50 +3,49 @@
     require "header.php"
 ?>
 <section class="admin">
-    <div class="kopsavilkums">
-        <div class="informacija">
-            <span>13</span>
-            <h3>Jauni pieteikumi</h3>
-            <p>Pēdējo 24h laikā</p>
-        </div>
-        <div class="informacija">
-            <span>7</span>
-            <h3>Iesniegti dokumenti</h3>
-            <p>Pēdējo 24h laikā</p>
-        </div>
-        <div class="informacija">
-            <span>350</span>
-            <h3>Pieteikumu kopā</h3>
-            <p>Kopš uzņemšanas sākuma</p>
-        </div>
-        <div class="informacija">
-            <span>205</span>
-            <h3>Iesniegti dokumenti</h3>
-            <p>Kopumā no visiem pieteikumiem</p>
-        </div>
-    </div>
-
     <div class="row">
         <div class="info">
-            <div class="head-info">Pēdējās izmaiņas sistēmā:</div>
-            <table>
-                <tr><th>Audzēknis</th><th>Specialitāte</th><th>Statuss</th></tr>
-                <tr><td>Jānis Bērziņš</td><td>Pavārs</td><td>Procesā</td></tr>
-                <tr><td>Jānis Bērziņš</td><td>Pavārs</td><td>Procesā</td></tr>
-                <tr><td>Jānis Bērziņš</td><td>Pavārs</td><td>Procesā</td></tr>
-                <tr><td>Jānis Bērziņš</td><td>Pavārs</td><td>Procesā</td></tr>
-                <tr><td>Jānis Bērziņš</td><td>Pavārs</td><td>Procesā</td></tr>
-            </table>
-        </div>
-        <div class="info2">
-            <div class="head-info">Pieprasītākās specialitātes:</div>
-            <table>
-                <tr><th>Specialitāte</th><th>Pieteikumi</th></tr>
-                <tr><td>Programmēšanas tehniķis</td><td>76</td></tr>
-                <tr><td>Datorisistēmu tehniķis</td><td>28</td></tr>
-                <tr><td>Pavārs</td><td>26</td></tr>
-                <tr><td>Mehatronisku sistēmu tehniķis</td><td>25</td></tr>
-                <tr><td>Grāmatvedis</td><td>25</td></tr>
+            <div class="head-info head-color">Audzēkņu administrēšana:</div>
+            <table class="adminTabula">
+                <tr>
+                    <th>Vārds</th>
+                    <th>Uzvārds</th>
+                    <th>1.specialitāte</th>
+                    <th>1.specialitāte</th>
+                    <th>Absolvējis</th>
+                    <th>Vidēja atzīme</th>
+                    <th>Statuss</th>
+                    <th>Komentāri</th>
+                    <th></th>
+                </tr>
+                <?php
+                    require("../files/connect_db.php");
+                    $atlasit_audzeknus_SQL = "SELECT * FROM audzekni a JOIN statuss st ON a.statuss = st.statuss_ID";
+                    $atlasa_audzeknus = mysqli_query($con,$atlasit_audzeknus_SQL);
+                    while($audzeknis = mysqli_fetch_assoc($atlasa_audzeknus)){
+                        if(empty($audzeknis['komentari'])){
+                            $komentari = "<i class='fas fa-times'></i>";
+                        }else{
+                            $komentari = "<i class='fas fa-check'></i>";;
+                        }
+                        echo "
+                            <tr>
+                                <td>{$audzeknis['vards']}</td>
+                                <td>{$audzeknis['uzvards']}</td>
+                                <td>{$audzeknis['spec1']}</td>
+                                <td>{$audzeknis['spec2']}</td>
+                                <td>{$audzeknis['izglitiba']}</td>
+                                <td>{$audzeknis['vid_vertejums']}</td>
+                                <td>{$audzeknis['stat_nosaukums']}</td>
+                                <td>{$komentari}</td>
+                                <td>
+                                    <form method='post' action='audzeknis.php'>
+                                        <button type'submit' name='apskatit' class='btn2' value='{$audzeknis['audzeknis_ID']}'><i class='fas fa-edit'></i></button>
+                                    </form></td>
+                            </tr>
+                        ";
+                    }
+                ?>
             </table>
         </div>
     </div>

@@ -50,7 +50,6 @@
 						header("location: index.php");
 						echo "<script>alert('{$userEmail}')</script>";
 					}else{
-						echo "<script>alert('aaa')</script>";
 						echo "Nepareizs lietotājvārds vai parole!";
 					}
 				}else{

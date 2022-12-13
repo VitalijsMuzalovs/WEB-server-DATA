@@ -25,7 +25,7 @@
         </nav>
         <nav class="navbar">
             <form action="#" method="post">
-                <button name="logout" type="submit"><a href="#iepazisti"><b>Administrator</b> <i class="fas fa-power-off"></i></a></button>
+                <button name="logout" type="submit"><a href="#iepazisti"><b><?php $_SESSION["userName"]?></b> <i class="fas fa-power-off"></i></a></button>
             </form>
         </nav>
         <?php
