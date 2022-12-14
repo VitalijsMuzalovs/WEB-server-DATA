@@ -1,7 +1,12 @@
 <?php
 
-function isUserExist($con,$login){    
-    $searchUserSQL = "SELECT login FROM users WHERE login = '$login'";
+function isUserExist($con,$login,$exceptMe){
+    if($exceptMe){
+        $searchUserSQL = "SELECT login FROM users WHERE login = '$login' AND userID <> $exceptMe";
+    }else{
+        $searchUserSQL = "SELECT login FROM users WHERE login = '$login'";
+    }
+    
     $rsUser = mysqli_query($con,$searchUserSQL);
     return mysqli_num_rows($rsUser);
 }
@@ -16,7 +21,7 @@ function addUserSQL($con,$login,$name,$surname,$email,$safePass,$active){
     if(mysqli_query($con,$insertUserSQL)){
         return True;
     }else{
-        echo $insertUserSQL;
+        // echo $insertUserSQL;
         return False;
     }
 }

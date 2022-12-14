@@ -46,9 +46,7 @@
 					$recordUser = mysqli_fetch_assoc($rsUser);
 					if(password_verify($pass,$recordUser['password'])){
 						$_SESSION["userName"] = $userEmail;
-						
 						header("location: index.php");
-						echo "<script>alert('{$userEmail}')</script>";
 					}else{
 						echo "Nepareizs lietotājvārds vai parole!";
 					}

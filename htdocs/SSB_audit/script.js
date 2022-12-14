@@ -11,3 +11,13 @@ function switchBlock(block){
     }
 }
 ;
+
+
+function cancelEdit(){
+    document.getElementById('addUserBtn').classList.remove('disabled')
+    document.getElementById('addUserBtn').type="submit"
+    document.getElementById('saveUserBtn').classList.add('disabled')
+    document.getElementById('saveUserBtn').type="text"
+    document.getElementById('cancelEditUser').classList.add('disabled')
+    document.getElementById('cancelEditUser').type="text"
+}

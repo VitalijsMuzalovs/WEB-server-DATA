@@ -19,7 +19,12 @@
             while($row = mysqli_fetch_assoc($rsUsers)){
                 echo "
                 <tr>
-                    <td><form action='#' method='post'><input class='edit_button' type='submit' name='edit' value=".$row['userID']."></form></td>
+                    <td>
+                        <form action='#' method='post'>
+                            <button class='edit_button' type='submit' name='edit' value=".$row['userID'].">
+                                <i class='fa-solid fa-user-pen'></i>
+                            </button>
+                        </form></td>
                     <td>".$row['login']."</td>
                     <td>".$row['name']."</td>
                     <td>".$row['surname']."</td>

@@ -5,6 +5,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    transition: all .3s ease-out;
 }
 
 header{
@@ -109,6 +110,11 @@ body{
     align-self: center;
 }
 
+.nav{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 0.5fr;
+}
+
 .row{
     height: 35px;
     margin-bottom: 15px;
@@ -132,8 +138,8 @@ input{
 
 .add_user{
     display: flex;
-    width: 100%;
-    justify-content: center;
+    min-width: 300px;
+    max-width: 500px;
 }
 
 .admin_form{
@@ -160,7 +166,7 @@ input{
     justify-content: center;
 }
 
-.button input{
+input.button{
     color: #fff;
     background: #555;
     cursor: pointer;
@@ -169,8 +175,18 @@ input{
     padding-left: 0;
 }
 
-.button input:hover{
+input.disabled{
+    color: rgb(206, 206, 206);
+    background: rgb(153, 152, 152);
+    cursor:default;
+}
+
+input.button:not(.disabled):hover{
     background: #333;
+}
+
+.buttons{
+    display:flex;
 }
 
 .register{
@@ -211,14 +227,14 @@ td{
 .admin_menu{
     width: 100%;
     display: flex;
-    justify-content:space-evenly;
+    justify-content: center;
 }
 
 .admin_menu_item{
     padding: 0.5rem;
     margin: 0.5rem;
     background-color: white;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     border: 1px solid darkblue;
     cursor: pointer;
 }
@@ -235,7 +251,11 @@ td{
 
 .sections{
     display:grid;
-    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-template-columns: 1fr 1.5fr 0.5fr;
+}
+
+.col_left{
+    justify-self: center;
 }
 
 .footer{
@@ -249,7 +269,12 @@ td{
 }
 
 .edit_button{
+    width: 3rem;
+    height: 2rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
     cursor: pointer;
-    text-align: center;
-    padding: 0 5px;
 }

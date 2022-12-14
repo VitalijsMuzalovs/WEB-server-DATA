@@ -2,7 +2,8 @@
     <?php 
         session_start();
         if(isset($_SESSION['userName'])){
-            echo "Sveiks, ".$_SESSION["userName"]."! <br>Autorizācija VEIKSMĪGA!";
+            $user = $_SESSION['userName'];
+
     ?>
         <!DOCTYPE html>
         <html lang="lv">
@@ -25,7 +26,7 @@
         </nav>
         <nav class="navbar">
             <form action="#" method="post">
-                <button name="logout" type="submit"><a href="#iepazisti"><b><?php $_SESSION["userName"]?></b> <i class="fas fa-power-off"></i></a></button>
+                <button name="logout" type="submit"><a href="#iepazisti"><b><?php echo $user; ?></b> <i class="fas fa-power-off"></i></a></button>
             </form>
         </nav>
         <?php
