@@ -629,7 +629,7 @@ label{
     gap: 1.5rem;
 }
 
-.admin .row .info{
+.admin .row .info .edit{
     flex:1 1 45rem;
     border:var(--border);
     box-shadow: var(--box-shadow);
@@ -650,6 +650,22 @@ label{
     font-size: 1.5rem;
     font-weight: bold;
     border-bottom: 1px solid #ddd;
+    display:grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+
+.left{
+    align-self: center;
+}
+
+.right{
+    justify-self:flex-end;
+}
+
+.fa-plus{
+    color:var(--main-color);
+    background-color: #fff;
+    border-radius: 50%;
 }
 
 .head-color{
@@ -698,6 +714,17 @@ select{
 
 .adminTabula{
     font-size: 1.3rem;
+}
+
+.specialitatesTabula td{
+    padding: 0 5rem;
+}
+
+.specialitatesTabula img{
+    height: 10rem;
+    width: 15rem;
+    object-fit: cover;
+    margin: 0.5rem 2rem;
 }
 
 @media (max-width:991px){
