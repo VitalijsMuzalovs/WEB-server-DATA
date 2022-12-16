@@ -1,77 +1,116 @@
 <?php
     $page = "specialitates";
-    require "header.php"
+    require "header.php";
 ?>
-<section class="admin">
-    <div class="row" >
-        <div class="info">
-            <div class="head-info head-color">
-                <div class="left">Pievienot jaunu specialītāti:</div>
-                <div></div>
-                <div class="right"></div>
-            </div>
-            
-            <div class="form" >
-                <form action="" method="POST">
-                    <label for="specialitate">Specialītāte: </label>
-                    <input class="box1" type="text" name="specialitate" id="specialitate" placeholder="Ievadi specialītātes nosaukumu *" required>
-                    <!-- <label for="description">Apraksts: </label>
-                    <input class="box1" type="textarea" rows="5" cols="60" name="description" id="description" placeholder="Ievadi specialītātes aprakstu *" required> -->
-                    <!-- <input type="text" name="userID" id="userID" hidden>
-                    <div class="buttons">
-                    <input class="button" type="submit" name="addUserBtn" id="addUserBtn" value="ADD">
-                    <input class="button disabled" type="button" name="saveUserBtn" id="saveUserBtn" value="SAVE">
-                    <input class="button disabled" type="button" name="cancelEditUser" id="cancelEditUser" onclick="cancelEdit()" value="CANCEL"> -->
-                    <!-- </div> -->
-                </form>
-            </div>
-
-            <div class="info">
-                <div class="head-info head-color">
-                        <div class="left">Specialītāšu administrēšana:</div>
-                        <div></div>
-                        <div class="right">
-                            <div class="btn">Pievienot specialitāti <i class="fa-solid fa-plus"></i></div>
-                        </div>
-                </div>
-                <table class="specialitatesTabula">
-                    <tr>
-                        <th>Attēls</th>
-                        <th>Specialītāte</th>
-                        <th>Apraksts</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <?php
-                        require("../files/connect_db.php");
-                        $all_positions_SQL = "SELECT * FROM specialitates";
-                        $all_positions_RS = mysqli_query($con,$all_positions_SQL);
-                        while($position = mysqli_fetch_assoc($all_positions_RS)){
-                            echo "
-                                <tr>
-                                    <td><img src='{$position['attels_URL']}' alt='{$position['nosaukums']}'></img></td>
-                                    <td>{$position['nosaukums']}</td>
-                                    <td>{$position['apraksts']}</td>
-                                    <td>
-                                        <form method='post' action='#'>
-                                            <button type='submit' name='edit' class='btn2' value=''><i class='fas fa-edit'></i></button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form method='post' action='#'>
-                                            <button type='submit' name='delete' class='btn2' value=''><i class='fa-regular fa-trash-can'></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            ";
-                        }
-                    ?>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
 
 <?php
-    include "footer.php"
+require("specialitates_content.php");
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $success_msg = False;
+
+    if(isset($_POST['addPositionBtn'])){
+        $specialitate = mysqli_real_escape_string($con,$_POST['specialitate']);
+        $description = mysqli_real_escape_string($con,$_POST['description']);
+        $imgURL = mysqli_real_escape_string($con,$_POST['img_url']);
+    
+        $completedAllFields = !empty($specialitate) && !empty($description) && !empty($imgURL);
+        $readyToRegister = False;
+
+        if(isPositionExist($con,$specialitate,False)){
+            $msg = "Specialītāte \'".$specialitate."\' jau existē!";
+        }else{
+            if(!$completedAllFields){
+                $msg = "Lūdzu, aizpildiet visus laukus!";
+            }else{
+                $readyToRegister = True;
+            }
+        }
+
+        if($readyToRegister){
+            $insertPosition = addPositionSQL($con,$specialitate,$description,$imgURL);                           
+            if($insertPosition){
+                $msg = "New user successfully registered!";
+                $success_msg = True;                               
+            }else{
+                echo "Error!";
+            }
+        }
+    }
+    
+
+
+    if(isset($_POST['edit'])){
+        $specialitates_ID = $_POST['edit'];
+        $selectedPosition = mysqli_query($con,"SELECT * FROM specialitates WHERE specialitates_ID = $specialitates_ID");
+        $rsByPositionID = mysqli_fetch_assoc($selectedPosition);
+        // echo "<script>alert('{$specialitates_ID}')</script>";
+    ?>
+        <script>
+            document.getElementById('specialitate').value ="<?php echo $rsByPositionID['nosaukums'] ?>"
+            document.getElementById('description').value ="<?php echo $rsByPositionID['apraksts'] ?>"
+            document.getElementById('img_url').value ="<?php echo $rsByPositionID['attels_URL'] ?>"
+            
+            document.getElementById('addPositionBtn').classList.add('disabled')
+            document.getElementById('addPositionBtn').type="button"
+            document.getElementById('savePositionBtn').classList.remove('disabled')
+            document.getElementById('savePositionBtn').type="submit"
+            document.getElementById('cancelEditPosition').classList.remove('disabled')
+            document.getElementById('cancelEditPosition').type="submit"
+            document.getElementById('specialitates_ID').value = '<?php echo $rsByPositionID['specialitates_ID'] ?>'
+        </script>
+    <?php
+    }
+
+    if(isset($_POST['savePositionBtn'])){
+        $success_msg = False;
+        $userID = $_POST['specialitates_ID'];
+        $login = mysqli_real_escape_string($con,$_POST['login']);
+        $name = mysqli_real_escape_string($con,$_POST['name']);
+        $surname = mysqli_real_escape_string($con,$_POST['surname']);
+        $email = mysqli_real_escape_string($con,$_POST['email']);
+        is_null($_POST['isUserActive'])? $isActive = 0 : $isActive = 1;
+    
+        $completedAllFields = !empty($login) && !empty($name) && !empty($surname);
+        $readyToRegister = False;
+
+        if(isPositionExist($con,$login,$userID)){
+            $msg = "User \'".$login."\' is allready exist!";
+        }else{
+            if(!$completedAllFields){
+                $msg = "Please, fill in all fields!";
+            }else{
+                $readyToRegister = True;
+            }
+        }
+
+        if($readyToRegister){
+            $saveUser = mysqli_query($con,"UPDATE users SET login='$login',name='$name',surname='$surname',email='$email',active=$isActive WHERE userID=$userID");
+            if($saveUser){
+                $msg = "User successfully SAVED!";
+                $success_msg = True;                               
+            }else{
+                echo "Error!";
+            }
+        }
+    }
+    
+    if(!empty($msg)){
+        echo "<script>document.getElementById('info').innerHTML +='".$msg."' </script>";
+        if($success_msg){
+            echo "<script>document.getElementById('info').classList.add('info','success')</script>";
+        }else{
+            echo "<script>document.getElementById('info').classList.add('info')</script>";
+        };
+        if(!empty($msg)){
+            header("Refresh:3,url=admin.php"); 
+        }
+    }
+}
+// else{
+//     echo "<div class='error'>ACCESS DENIED!</div>";
+// }
+
+
+include "footer.php";
 ?>
