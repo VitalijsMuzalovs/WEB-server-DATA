@@ -499,8 +499,12 @@ footer{
     font-size: 1.6rem;
 }
 
-#editForm .row{
-    margin-bottom: 2rem;
+#editForm{
+    display: none;
+}
+
+.admin .info{
+    margin-top: 7rem;
 }
 
 #editForm .row form{
@@ -560,6 +564,14 @@ footer{
 
 #pieteiksanas .row form .btn:hover{
     background: var(--black);
+}
+
+img.enabled{
+    box-shadow: #57a141 1px 1px 20px;
+}
+
+img.disabled{
+    box-shadow: #ff0000 1px 1px 20px;
 }
 
 .pazinojums{
@@ -624,7 +636,7 @@ label{
 
 /* Admin daļa: */
 
-.admin .kopsavilkums{
+.admin .kopsavilkums{   
     margin-top: 10rem;
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -668,6 +680,10 @@ label{
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
+}
+
+.admin.info{
+    margin-top: 7rem;
 }
 
 .admin .row .info .edit{

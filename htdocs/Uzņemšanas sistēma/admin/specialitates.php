@@ -1,10 +1,12 @@
 <?php
+    ob_start();
     $page = "specialitates";
     require "header.php";
 ?>
 
 <?php
 require("specialitates_content.php");
+require("../files/functions.php");
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $success_msg = False;
@@ -13,6 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $specialitate = mysqli_real_escape_string($con,$_POST['specialitate']);
         $description = mysqli_real_escape_string($con,$_POST['description']);
         $imgURL = mysqli_real_escape_string($con,$_POST['img_url']);
+        is_null($_POST['isPositionActive'])? $isActive = 0 : $isActive = 1;
     
         $completedAllFields = !empty($specialitate) && !empty($description) && !empty($imgURL);
         $readyToRegister = False;
@@ -28,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
 
         if($readyToRegister){
-            $insertPosition = addPositionSQL($con,$specialitate,$description,$imgURL);                           
+            $insertPosition = addPositionSQL($con,$specialitate,$description,$imgURL,$isActive);                           
             if($insertPosition){
                 $msg = "New user successfully registered!";
                 $success_msg = True;                               
@@ -50,6 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             document.getElementById('specialitate').value ="<?php echo $rsByPositionID['nosaukums'] ?>"
             document.getElementById('description').value ="<?php echo $rsByPositionID['apraksts'] ?>"
             document.getElementById('img_url').value ="<?php echo $rsByPositionID['attels_URL'] ?>"
+            document.getElementById('chkActive').checked= "<?php echo $rsByPositionID['active']?True:False ?>"
             
             document.getElementById('addPositionBtn').classList.add('disabled')
             document.getElementById('addPositionBtn').type="button"
@@ -64,29 +68,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if(isset($_POST['savePositionBtn'])){
         $success_msg = False;
-        $userID = $_POST['specialitates_ID'];
-        $login = mysqli_real_escape_string($con,$_POST['login']);
-        $name = mysqli_real_escape_string($con,$_POST['name']);
-        $surname = mysqli_real_escape_string($con,$_POST['surname']);
-        $email = mysqli_real_escape_string($con,$_POST['email']);
-        is_null($_POST['isUserActive'])? $isActive = 0 : $isActive = 1;
+        $specID = $_POST['specialitates_ID'];
+        $nosaukums = mysqli_real_escape_string($con,$_POST['specialitate']);
+        $apraksts = mysqli_real_escape_string($con,$_POST['description']);
+        $attels_URL = mysqli_real_escape_string($con,$_POST['img_url']);
+
+        is_null($_POST['isPositionActive'])? $isActive = 0 : $isActive = 1;
     
-        $completedAllFields = !empty($login) && !empty($name) && !empty($surname);
+        $completedAllFields = !empty($nosaukums) && !empty($apraksts) && !empty($attels_URL);
         $readyToRegister = False;
 
-        if(isPositionExist($con,$login,$userID)){
-            $msg = "User \'".$login."\' is allready exist!";
+        if(isPositionExist($con,$nosaukums,$specID)){
+            $msg = "Specialītāte \'".$nosaukums."\' jau eksistē!";
         }else{
             if(!$completedAllFields){
-                $msg = "Please, fill in all fields!";
+                $msg = "Lūdzu, aizpildiet visus laukus!";
             }else{
                 $readyToRegister = True;
             }
         }
 
         if($readyToRegister){
-            $saveUser = mysqli_query($con,"UPDATE users SET login='$login',name='$name',surname='$surname',email='$email',active=$isActive WHERE userID=$userID");
-            if($saveUser){
+            $savePosition = mysqli_query($con,"UPDATE specialitates SET nosaukums='$nosaukums',apraksts='$apraksts',attels_URL='$attels_URL',active=$isActive WHERE specialitates_ID=$specID");
+            if($savePosition){
                 $msg = "User successfully SAVED!";
                 $success_msg = True;                               
             }else{
@@ -103,7 +107,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             echo "<script>document.getElementById('info').classList.add('info')</script>";
         };
         if(!empty($msg)){
-            header("Refresh:3,url=admin.php"); 
+            header("Refresh:3,url=specialitates.php"); 
         }
     }
 }
@@ -113,4 +117,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
 include "footer.php";
+ob_end_flush();
 ?>

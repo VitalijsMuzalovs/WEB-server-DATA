@@ -51,7 +51,7 @@
             <div class="informacija">
                 <span>
                     <?php 
-                        $active_positions_SQL = "SELECT COUNT(specialitates_ID) FROM specialitates;";
+                        $active_positions_SQL = "SELECT COUNT(specialitates_ID) FROM specialitates WHERE active=1;";
                         $active_positions_count = mysqli_query($con,$active_positions_SQL);
 
                         while($rezultats = mysqli_fetch_assoc($active_positions_count)){

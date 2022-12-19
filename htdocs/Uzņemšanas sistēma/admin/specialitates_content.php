@@ -1,4 +1,5 @@
 <section class="admin">
+
     <div class="editForm" id="editForm">
         <div class="row">
             <div class="info">
@@ -16,24 +17,27 @@
                         <div><textarea class="box1 " rows="5" cols="10" name="description" id="description" placeholder="Ievadi specialītātes aprakstu *" required style="resize: vertical;"></textarea></div>
                         <div><span>Attēls: </span></div>
                         <div><input class="box1" type="text" name="img_url" id="img_url" placeholder="Ievadi specialītātes attēla saiti *" required></div>
-                        <div><input class="box1" type="text" name="specialitates_ID" id="specialitates_ID"></div>
+                        <div><span>Aktīva specialītāte: </span></div>
+                        <input class="box1" type="checkbox" id="chkActive" name="isPositionActive" checked>
+                        <div><input class="box1" type="text" name="specialitates_ID" id="specialitates_ID" hidden></div>
                         <div class="buttons">
-                        <input class="btn" type="submit" name="addPositionBtn" id="addPositionBtn" value="ADD">
-                        <input class="btn disabled" type="button" name="savePositionBtn" id="savePositionBtn" value="SAVE">
-                        <input class="btn disabled" type="button" name="cancelEditPosition" id="cancelEditPosition" onclick="cancelEdit()" value="CANCEL">
-                        <!-- </div> -->
+                            <input class="btn" type="submit" name="addPositionBtn" id="addPositionBtn" value="ADD">
+                            <input class="btn disabled" type="button" name="savePositionBtn" id="savePositionBtn" value="SAVE">
+                            <input class="btn disabled" type="button" name="cancelEditPosition" id="cancelEditPosition" onclick="cancelEdit()" value="CANCEL">
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    
+
+ 
     <div class="info">
         <div class="head-info head-color">
                 <div class="left">Specialītāšu administrēšana:</div>
                 <div></div>
                 <div class="right">
-                    <div class="btn">Pievienot specialitāti <i class="fa-solid fa-plus"></i></div>
+                    <div class="btn" onclick="displayEditForm()">Pievienot specialitāti <i class="fa-solid fa-plus"></i></div>
                 </div>
         </div>
         <table class="specialitatesTabula">
@@ -49,15 +53,17 @@
                 $all_positions_SQL = "SELECT * FROM specialitates";
                 $all_positions_RS = mysqli_query($con,$all_positions_SQL);
                 while($position = mysqli_fetch_assoc($all_positions_RS)){
+                    $statuss = $position['active']?'enabled':'disabled';
                     echo "
                         <tr>
-                            <td>{$position['specialitates_ID']}</td>
-                            <td><img src='{$position['attels_URL']}' alt='{$position['nosaukums']}'></img></td>
+                            <!--<td>{$position['specialitates_ID']}</td>--!>
+                            <td><img class = '{$statuss}'src='{$position['attels_URL']}' alt='{$position['nosaukums']}'></img></td>
                             <td>{$position['nosaukums']}</td>
                             <td>{$position['apraksts']}</td>
                             <td>
                                 <form method='post' action='#'>
                                     <button type='submit' name='edit' class='btn2' value='{$position['specialitates_ID']}'><i class='fas fa-edit'></i></button>
+                                    <script>displayEditForm()</script>
                                 </form>
                             </td>
                             <td>
@@ -74,3 +80,5 @@
         <!-- </div> -->
     <!-- </div> -->
 </section>
+
+<script src="../files/script.js"></script>

@@ -25,3 +25,7 @@ function cancelEdit(){
     document.getElementById('cancelEditPosition').classList.add('disabled')
     document.getElementById('cancelEditPosition').type="text"
 }
+
+function displayEditForm(){
+    document.getElementById('editForm').style.display = 'block';
+}

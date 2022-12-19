@@ -1,24 +1,24 @@
 <?php
 
-function isPositionExist($connect_db,$spec,$exceptMe){
+function isPositionExist($con,$spec,$exceptMe){
     if($exceptMe){
-        $searchUserSQL = "SELECT nosaukums FROM specialitates WHERE nosaukums = '$spec' AND specialitates_ID <> $exceptMe";
+        $searchPositionSQL = "SELECT nosaukums FROM specialitates WHERE nosaukums = '$spec' AND specialitates_ID <> $exceptMe";
     }else{
-        $searchUserSQL = "SELECT nosaukums FROM specialitates WHERE nosaukums = '$spec'";
+        $searchPositionSQL = "SELECT nosaukums FROM specialitates WHERE nosaukums = '$spec'";
     }
     
-    $rsSpecialitate = mysqli_query($connect_db,$searchUserSQL);
+    $rsSpecialitate = mysqli_query($con,$searchPositionSQL);
     return mysqli_num_rows($rsSpecialitate);
 }
 
-function addPositionSQL($connect_db,$specialitate,$description,$imgURL){
-    $insertUserSQL = "
-        INSERT INTO users
-        (login,name,surname,email,password,active)
-        VALUES($specialitate,$description,$imgURL)
+function addPositionSQL($con,$specialitate,$description,$imgURL,$active){
+    $insertPositionSQL = "
+        INSERT INTO specialitates
+        (nosaukums,apraksts,attels_URL,active)
+        VALUES('$specialitate','$description','$imgURL',$active)
     ";
 
-    if(mysqli_query($connect_db,$insertUserSQL)){
+    if(mysqli_query($con,$insertPositionSQL)){
         return True;
     }else{
         // echo $insertUserSQL;

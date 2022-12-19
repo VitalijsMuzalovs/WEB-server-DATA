@@ -42,7 +42,7 @@
 
         <?php
             require('files/connect_db.php');
-            $specialitates_SQL = "SELECT * FROM specialitates";
+            $specialitates_SQL = "SELECT * FROM specialitates WHERE active=1";
             $atlasa_specialitates = mysqli_query($con,$specialitates_SQL);
 
             while($specialitate = mysqli_fetch_assoc($atlasa_specialitates)){
