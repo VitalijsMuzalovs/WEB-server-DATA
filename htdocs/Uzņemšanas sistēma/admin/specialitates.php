@@ -15,7 +15,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $specialitate = mysqli_real_escape_string($con,$_POST['specialitate']);
         $description = mysqli_real_escape_string($con,$_POST['description']);
         $imgURL = mysqli_real_escape_string($con,$_POST['img_url']);
-        is_null($_POST['isPositionActive'])? $isActive = 0 : $isActive = 1;
+
+        
+        // uploadIMG();
+        echo "<scrip>document.getElementById('img_url').value ='AAAAAAAAA'</script>";
+
+        empty($_POST['isPositionActive'])? $isActive = 0 : $isActive = 1;
+
     
         $completedAllFields = !empty($specialitate) && !empty($description) && !empty($imgURL);
         $readyToRegister = False;
@@ -47,7 +53,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $specialitates_ID = $_POST['edit'];
         $selectedPosition = mysqli_query($con,"SELECT * FROM specialitates WHERE specialitates_ID = $specialitates_ID");
         $rsByPositionID = mysqli_fetch_assoc($selectedPosition);
-        // echo "<script>alert('{$specialitates_ID}')</script>";
     ?>
         <script>
             document.getElementById('specialitate').value ="<?php echo $rsByPositionID['nosaukums'] ?>"
@@ -59,8 +64,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             document.getElementById('addPositionBtn').type="button"
             document.getElementById('savePositionBtn').classList.remove('disabled')
             document.getElementById('savePositionBtn').type="submit"
-            document.getElementById('cancelEditPosition').classList.remove('disabled')
-            document.getElementById('cancelEditPosition').type="submit"
+            // document.getElementById('cancelEditPosition').classList.remove('disabled')
+            // document.getElementById('cancelEditPosition').type="submit"
             document.getElementById('specialitates_ID').value = '<?php echo $rsByPositionID['specialitates_ID'] ?>'
         </script>
     <?php
@@ -73,7 +78,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $apraksts = mysqli_real_escape_string($con,$_POST['description']);
         $attels_URL = mysqli_real_escape_string($con,$_POST['img_url']);
 
-        is_null($_POST['isPositionActive'])? $isActive = 0 : $isActive = 1;
+        empty($_POST['isPositionActive'])? $isActive = 0 : $isActive = 1;
     
         $completedAllFields = !empty($nosaukums) && !empty($apraksts) && !empty($attels_URL);
         $readyToRegister = False;
@@ -91,14 +96,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if($readyToRegister){
             $savePosition = mysqli_query($con,"UPDATE specialitates SET nosaukums='$nosaukums',apraksts='$apraksts',attels_URL='$attels_URL',active=$isActive WHERE specialitates_ID=$specID");
             if($savePosition){
-                $msg = "User successfully SAVED!";
+                $msg = "Specialītāte veiksmīgi SAGLABĀTA!";
                 $success_msg = True;                               
             }else{
                 echo "Error!";
             }
         }
     }
+
+    if(isset($_POST['delete'])){
+        $specialitates_ID = $_POST['delete'];
+        $deletePosition = mysqli_query($con,"UPDATE specialitates SET active = 0 WHERE specialitates_ID = $specialitates_ID");
+        if($deletePosition){
+            $msg = "Specialītāte veiksmīgi DEAKTIVIZĒTA!";
+            $success_msg = True;                               
+        }else{
+            echo "Error!";
+        }
+    }
     
+    if (!empty($_POST)){
+        echo "<script>displayEditForm()</script>";
+    }
+
     if(!empty($msg)){
         echo "<script>document.getElementById('info').innerHTML +='".$msg."' </script>";
         if($success_msg){

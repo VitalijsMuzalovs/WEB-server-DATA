@@ -21,11 +21,21 @@ function cancelEdit(){
     document.getElementById('addPositionBtn').classList.remove('disabled')
     document.getElementById('addPositionBtn').type="submit"
     document.getElementById('savePositionBtn').classList.add('disabled')
-    document.getElementById('savePositionBtn').type="text"
-    document.getElementById('cancelEditPosition').classList.add('disabled')
-    document.getElementById('cancelEditPosition').type="text"
+    document.getElementById('savePositionBtn').setAttribute('disabled', '')
+    // document.getElementById('cancelEditPosition').classList.add('disabled')
+    // document.getElementById('cancelEditPosition').setAttribute('disabled', '')
+    document.getElementById('editForm').style.display = 'none';
+    document.getElementById("form_container").reset();
 }
 
 function displayEditForm(){
     document.getElementById('editForm').style.display = 'block';
+}
+
+function hideEditForm(){
+    document.getElementById('editForm').style.display = 'none';
+}
+
+function extractFileName(){
+    document.getElementById('img_url').value ='123'
 }

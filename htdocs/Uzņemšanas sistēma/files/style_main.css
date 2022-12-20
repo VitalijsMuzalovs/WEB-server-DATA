@@ -75,7 +75,7 @@ h1 span{
     box-shadow: var(--box-shadow);
 }
 
-.btn:hover{
+.btn:not(.disabled):hover{
     background:var(--black);
 }
 
@@ -800,7 +800,7 @@ select{
 .disabled{
     color: rgb(206, 206, 206);
     background: rgb(153, 152, 152);
-    cursor:default;
+    cursor:default;  
 }
 
 .success{
