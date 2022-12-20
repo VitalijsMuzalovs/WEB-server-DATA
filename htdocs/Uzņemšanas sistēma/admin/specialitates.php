@@ -16,9 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $description = mysqli_real_escape_string($con,$_POST['description']);
         $imgURL = mysqli_real_escape_string($con,$_POST['img_url']);
 
-        
-        // uploadIMG();
-        echo "<scrip>document.getElementById('img_url').value ='AAAAAAAAA'</script>";
+        $filePath = uploadIMG();
 
         empty($_POST['isPositionActive'])? $isActive = 0 : $isActive = 1;
 
@@ -37,6 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
 
         if($readyToRegister){
+            echo "<script>alert('".$filePath."')</script>";
             $insertPosition = addPositionSQL($con,$specialitate,$description,$imgURL,$isActive);                           
             if($insertPosition){
                 $msg = "New user successfully registered!";

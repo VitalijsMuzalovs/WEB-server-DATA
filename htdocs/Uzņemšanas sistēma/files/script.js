@@ -37,5 +37,6 @@ function hideEditForm(){
 }
 
 function extractFileName(){
-    document.getElementById('img_url').value ='123'
+    let a = document.getElementById('fileToUpload').files[0].name
+    // alert(document.getElementById('img_url').value =a)
 }
