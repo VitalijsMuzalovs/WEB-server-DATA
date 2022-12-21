@@ -85,7 +85,7 @@
                     ?>
                 </table>
             </div>
-            <div class="info2">
+            <div class="info">
                 <div class="head-info">Pieprasītākās specialitātes:</div>
                 <table>
                     <tr><th>Specialitāte</th><th>Pieteikumi</th></tr>

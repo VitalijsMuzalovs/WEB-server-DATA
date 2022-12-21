@@ -176,3 +176,14 @@
 2022-12-21T07:31:26.780178Z 0 [System] [MY-010931] [Server] C:\WEB\bin\mysql-8.0\bin\mysqld.exe: ready for connections. Version: '8.0.31'  socket: ''  port: 3306  MySQL Community Server - GPL.
 2022-12-21T09:03:46.998931Z 0 [System] [MY-013105] [Server] C:\WEB\bin\mysql-8.0\bin\mysqld.exe: Normal shutdown.
 2022-12-21T09:03:47.787218Z 0 [System] [MY-010910] [Server] C:\WEB\bin\mysql-8.0\bin\mysqld.exe: Shutdown complete (mysqld 8.0.31)  MySQL Community Server - GPL.
+2022-12-21T09:08:48.241176Z 0 [Warning] [MY-010915] [Server] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2022-12-21T09:08:48.241381Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2022-12-21T09:08:48.241409Z 0 [System] [MY-010116] [Server] C:\WEB\bin\mysql-8.0\bin\mysqld.exe (mysqld 8.0.31) starting as process 13140
+2022-12-21T09:08:48.255861Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2022-12-21T09:08:48.685860Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2022-12-21T09:08:49.169612Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2022-12-21T09:08:49.170358Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2022-12-21T09:08:49.216740Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060
+2022-12-21T09:08:49.216896Z 0 [System] [MY-010931] [Server] C:\WEB\bin\mysql-8.0\bin\mysqld.exe: ready for connections. Version: '8.0.31'  socket: ''  port: 3306  MySQL Community Server - GPL.
+2022-12-21T12:15:42.617195Z 0 [System] [MY-013105] [Server] C:\WEB\bin\mysql-8.0\bin\mysqld.exe: Normal shutdown.
+2022-12-21T12:15:43.154140Z 0 [System] [MY-010910] [Server] C:\WEB\bin\mysql-8.0\bin\mysqld.exe: Shutdown complete (mysqld 8.0.31)  MySQL Community Server - GPL.

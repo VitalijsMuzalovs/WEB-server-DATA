@@ -61,7 +61,7 @@
                 if(($userCount >= 1 )){
                     echo "<div class='zinojums sarkans'>Kļūda! Informācija par Jums jau ir iesniegta!<br> Ja vēlaties veikt kādas izmaiņas - sazinieties ar PIKC LVT uzņemšānas komisiju pa tālruni +371 29999999</div>";
                 }else{
-                    if(!empty($vards_ievade) && !empty($uzvards_ievade) && !empty($dzim_dati_ievade) && !empty($talrunis_ievade) && !empty($epasts_ievade) && !empty($adrese_ievade) && !empty($spec1_ievade) && !empty($spec2_ievade) && !empty($izglitiba_ievade) && !empty($vid_vert_ievade)){        
+                    if(!empty($vards_ievade) && !empty($uzvards_ievade) && !empty($dzim_dati_ievade) && !empty($talrunis_ievade) && !empty($epasts_ievade) && !empty($adrese_ievade) && !empty($spec1_ievade) && !empty($izglitiba_ievade) && !empty($vid_vert_ievade)){        
                         $pievienot_audzekni_SQL ="
                             INSERT INTO audzekni 
                             (vards,uzvards,dzim_dati,talrunis,epasts,adrese,spec1,spec2,izglitiba,vid_vertejums,komentari)

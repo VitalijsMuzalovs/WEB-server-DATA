@@ -46,9 +46,15 @@
             $atlasa_specialitates = mysqli_query($con,$specialitates_SQL);
 
             while($specialitate = mysqli_fetch_assoc($atlasa_specialitates)){
+                $myLink = $specialitate['attels_URL'];
+                if(substr($myLink,0,4) !='http'){
+                    $fileDir = substr($myLink, 3);
+                }else{
+                    $fileDir = $myLink;
+                }
                 echo "
                 <div class='box'>
-                    <img src='{$specialitate['attels_URL']}' alt=''>
+                    <img src='{$fileDir}' alt=''>
                     <h3>{$specialitate['nosaukums']}</h3>
                     <p>{$specialitate['apraksts']}</p>
                     
