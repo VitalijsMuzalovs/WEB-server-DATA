@@ -28,6 +28,7 @@ function addPositionSQL($con,$specialitate,$description,$imgURL,$active){
 
 function uploadIMG(){
     require('../files/connect_db.php');
+    $success_msg = False;
     $target_dir = "../images/spec_img/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
@@ -37,45 +38,58 @@ function uploadIMG(){
     if(isset($_POST["submit"])) {
       $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
       if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
+        $msg =  "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
       } else {
-        echo "File is not an image.";
+        $msg =  "Fails nav attēls!";
         $uploadOk = 0;
       }
     }
     
     // Check if file already exists
     if (file_exists($target_file)) {
-      echo "Sorry, file already exists.";
+      $msg =  "Atvainojiet, fails jau eksistē.";
       $uploadOk = 0;
     }
     
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
-      echo "Sorry, your file is too large.";
+      $msg =  "Atvainojiet, jūsu fails ir pārāk liels.";
       $uploadOk = 0;
     }
     
     // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" ) {
-      echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+      $msg = "Atļauti tikai JPG, JPEG, PNG & GIF faili.";
       $uploadOk = 0;
     }
     
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-      echo "Sorry, your file was not uploaded.";
+      // $msg = "Fails netika augšupielādēts.";
     // if everything is ok, try to upload file
     } else {
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". $myVal = htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-        echo $target_file;
-        return $myVal;
+        $success_msg=True;
+        return True;
+        // $msg = "The file ". $myVal = htmlspecialchars(basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
       } else {
-        echo "Sorry, there was an error uploading your file.";
+        $msg = "Augšupielādējot failu, radās kļūda.";
       }
     }
+
+    if(!empty($msg)){
+      echo "<script>document.getElementById('infomsg').innerHTML +='".$msg."' </script>";
+      if($success_msg){
+          echo "<script>document.getElementById('infomsg').classList.add('infomsg','success')</script>";
+      }else{
+          echo "<script>document.getElementById('infomsg').classList.add('infomsg')</script>";
+      };
+      if(!empty($msg)){
+          header("Refresh:3,url=specialitates.php"); 
+      }
+  }
+
 }
 ?>

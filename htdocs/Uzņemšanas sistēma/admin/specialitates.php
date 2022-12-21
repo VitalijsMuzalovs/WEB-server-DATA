@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $description = mysqli_real_escape_string($con,$_POST['description']);
         $imgURL = mysqli_real_escape_string($con,$_POST['img_url']);
 
-        $filePath = uploadIMG();
+        $isUploaded = uploadIMG();
 
         empty($_POST['isPositionActive'])? $isActive = 0 : $isActive = 1;
 
@@ -30,15 +30,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if(!$completedAllFields){
                 $msg = "Lūdzu, aizpildiet visus laukus!";
             }else{
-                $readyToRegister = True;
+                if(!$isUploaded){
+                    // $msg = "X3";
+                    // exit();
+                }else{
+                    $readyToRegister = True;
+                }
             }
         }
 
         if($readyToRegister){
-            echo "<script>alert('".$filePath."')</script>";
             $insertPosition = addPositionSQL($con,$specialitate,$description,$imgURL,$isActive);                           
             if($insertPosition){
-                $msg = "New user successfully registered!";
+                $msg = "Jauna specialītāte ir veiksmīgi reģistrēta!";
                 $success_msg = True;                               
             }else{
                 echo "Error!";
@@ -119,11 +123,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     if(!empty($msg)){
-        echo "<script>document.getElementById('info').innerHTML +='".$msg."' </script>";
+        echo "<script>document.getElementById('infomsg').innerHTML +='".$msg."' </script>";
         if($success_msg){
-            echo "<script>document.getElementById('info').classList.add('info','success')</script>";
+            echo "<script>document.getElementById('infomsg').classList.add('infomsg','success')</script>";
         }else{
-            echo "<script>document.getElementById('info').classList.add('info')</script>";
+            echo "<script>document.getElementById('infomsg').classList.add('infomsg')</script>";
         };
         if(!empty($msg)){
             header("Refresh:3,url=specialitates.php"); 

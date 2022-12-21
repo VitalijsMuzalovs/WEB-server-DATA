@@ -23,6 +23,9 @@
                         <input class="box1" type="checkbox" id="chkActive" name="isPositionActive" checked>
                         <div><input class="box1" type="text" name="specialitates_ID" id="specialitates_ID" hidden></div>
                         <div class="buttons">
+                            <div>
+                                <div id="infomsg"></div>
+                            </div>
                             <input class="btn" type="submit" name="addPositionBtn" id="addPositionBtn" value="PIEVIENOT">
                             <input class="btn disabled" type="button" name="savePositionBtn" id="savePositionBtn" value="SAGLABĀT">
                             <input class="btn" type="button" name="cancelEditPosition" id="cancelEditPosition" onclick="cancelEdit()" value="BEIGT">
